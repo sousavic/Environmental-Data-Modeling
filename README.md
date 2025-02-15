@@ -43,7 +43,7 @@ Normalization and standardization of datasets for better model performance.
 
 Clone this repository | Clone este repositório:
 
-git clone https://github.com/yourusername/Factors-Transferability-Bioindicators.git
+git clone https://github.com/sousavic/Factors-Transferability-Bioindicators.git
 
 Open the script_analise.R in RStudio | Abra o script_analise.R no RStudio.
 
