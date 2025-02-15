@@ -62,7 +62,9 @@ MET.IBI.out <- MET.IBI[, !colnames(MET.IBI) %in% met.OUT]
 # Log transformation for normalization of selected metrics
 MET.IBI.out$Ab_total_especies <- log(MET.IBI.out$Ab_total_especies + 1)
 
-# Part 2: Regressions and Statistical Models
+# Part II
+
+# Regressions and Statistical Models
 # This section applies linear regression models to evaluate the relationship between functional metrics of fish assemblages and the IPA.
 # The goal is to identify significant predictors of anthropogenic pressure and assess their reliability across different regions.
 
@@ -97,9 +99,7 @@ write.table(results, "../results/Selected_Metrics.txt", sep="\t", row.names=FALS
 gcat("Processing complete. Results saved in the 'results' folder.")
 
 
-
-
-Part II
+Part III
 
 # Analysis Script: Transferability of Bioindicators
 # Author: Victoria Sousa
@@ -161,41 +161,11 @@ MET.IBI.out <- MET.IBI[, !colnames(MET.IBI) %in% met.OUT]
 # Log transformation for normalization of selected metrics
 MET.IBI.out$Ab_total_especies <- log(MET.IBI.out$Ab_total_especies + 1)
 
-# Part 2: Regressions and Statistical Models
-# This section applies linear regression models to evaluate the relationship between functional metrics of fish assemblages and the IPA.
-# The goal is to identify significant predictors of anthropogenic pressure and assess their reliability across different regions.
-
-# Load processed data
-IPAfull <- read.table("../results/IPA.txt", header = TRUE)
-MET.IBI <- read.table("../results/MetricasIBI.txt", header = TRUE)
-
-# Select metrics for analysis
-MET.SEL.FREQ <- colnames(MET.IBI[, -c(1:2)])
-
-# Normalize selected metrics
-MET.IBI.range <- decostand(MET.IBI[, MET.SEL.FREQ], "range")
-
-# Create regression models to predict environmental impact
-models <- lapply(MET.SEL.FREQ, function(met) {
-  mod <- lm(scale(MET.IBI.range[, met]) ~ scale(IPAfull[, 1]))
-  summary(mod)
-})
-
-# Extract coefficients and p-values
-results <- data.frame(Metric = MET.SEL.FREQ,
-                      Beta = sapply(models, function(m) m$coefficients[2, 1]),
-                      P_value = sapply(models, function(m) m$coefficients[2, 4]))
-
-# Filter significant metrics
-results <- results[results$P_value < 0.05, ]
-
-# Save results
-write.table(results, "../results/Selected_Metrics.txt", sep="\t", row.names=FALSE)
 
 
-
-
-# Part 3: Assessing Transferability
+# Part IV
+                                       
+# Assessing Transferability
 # This section evaluates the robustness of the models across different drainage areas.
 # It processes data for a specific drainage and applies the same methodology to other drainages by changing the drainage ID.
 
