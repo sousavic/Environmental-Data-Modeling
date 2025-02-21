@@ -99,71 +99,7 @@ write.table(results, "../results/Selected_Metrics.txt", sep="\t", row.names=FALS
 gcat("Processing complete. Results saved in the 'results' folder.")
 
 
-Part III
-
-# Analysis Script: Transferability of Bioindicators
-# Author: Victoria Sousa
-# Description: This script performs the statistical analysis for the study on the transferability of bioindicators based on stream fish assemblages.
-# The objective is to assess how bioindicators, derived from fish assemblages, respond to environmental pressures across different spatial scales.
-# The script includes data preprocessing, calculation of the Anthropogenic Pressure Index (IPA), selection of functional metrics, and regression modeling.
-
-# Initial setup
-rm(list=ls(all=TRUE))  # Clear the environment
-setwd("./dataset")  # Set the working directory
-
-# Load required packages
-library(vegan)
-library(cluster)
-library(dplyr)
-
-# Load datasets
-MET.IBI <- read.table("metricas.txt", header = TRUE)
-LU100 <- read.table("impactos_100.txt", header = TRUE)
-LUrip <- read.table("LUrip.txt", header = TRUE)
-LUdre <- read.table("LUdrenagem.txt", header = TRUE)
-ENVlandscape <- read.csv("dados_ambientais.csv", header = TRUE)
-DistEucl <- read.table("distEuc.txt", header = TRUE)
-DistRio <- read.table("distRio.txt", header = TRUE)
-
-# Define row names
-rownames(MET.IBI) <- MET.IBI$Ponto
-rownames(LU100) <- LU100$Ponto
-rownames(LUrip) <- LUrip$Ponto
-rownames(LUdre) <- LUdre$Ponto
-rownames(ENVlandscape) <- ENVlandscape$Ponto
-rownames(DistEucl) <- DistEucl$Ponto
-rownames(DistRio) <- DistRio$Ponto
-
-# Remove identified outliers
-outliers <- c(32, 172, 232, 245, 299, 300, 274)
-MET.IBI <- MET.IBI[!rownames(MET.IBI) %in% outliers, ]
-LU100 <- LU100[!rownames(LU100) %in% outliers, ]
-LUrip <- LUrip[!rownames(LUrip) %in% outliers, ]
-LUdre <- LUdre[!rownames(LUdre) %in% outliers, ]
-ENVlandscape <- ENVlandscape[!rownames(ENVlandscape) %in% outliers, ]
-DistEucl <- DistEucl[!rownames(DistEucl) %in% outliers, ]
-DistRio <- DistRio[!rownames(DistRio) %in% outliers, ]
-
-# Anthropogenic Pressure Index (IPA)
-# IPA measures the degree of human impact on the environment based on land use metrics.
-weights <- c(SILVI = 0, AGRI = 1, Pastagem = 1, INFURB = 1, AGUA = 1, RODO = 1)
-IPA100 <- rowSums(LU100[, names(weights)] * weights)
-IPArip <- rowSums(LUrip[, names(weights)] * weights)
-IPAdre <- rowSums(LUdre[, names(weights)] * weights)
-IPAfull <- (IPA100 + IPArip + IPAdre)
-IPAfull <- IPAfull / max(IPAfull)  # Normalize values to range 0-1
-
-# Remove metrics with more than 80% zeros or ones
-MET.IBI.out <- decostand(MET.IBI[, -c(1:2)], "range")
-met.OUT <- names(which(colMeans(MET.IBI.out == 0) > 0.8 | colMeans(MET.IBI.out == 1) > 0.8))
-MET.IBI.out <- MET.IBI[, !colnames(MET.IBI) %in% met.OUT]
-
-# Log transformation for normalization of selected metrics
-MET.IBI.out$Ab_total_especies <- log(MET.IBI.out$Ab_total_especies + 1)
-
-
-
-# Part IV
+# Part III
                                        
 # Assessing Transferability
 # This section evaluates the robustness of the models across different drainage areas.
