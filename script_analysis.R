@@ -53,11 +53,30 @@ DistRio <- DistRio[!rownames(DistRio) %in% outliers, ]
 # 3. Calculate Anthropogenic Pressure Index (IPA)
 # ==================================================
 
-weights <- c(SILVI = 0, AGRI = 1, Pastagem = 1, INFURB = 1, AGUA = 1, RODO = 1)
+p1 <- 0 #SILVI.
+p2 <- 1 #AGRI.
+p3 <- 1 #Pastagem.
+p4 <- 1 #INFURB.
+p5 <- 1 #AGUA.
+p6 <- 1 #RODO.
 
-IPA100 <- rowSums(LU100[, names(weights)] * weights)
-IPArip <- rowSums(LUrip[, names(weights)] * weights)
-IPAdre <- rowSums(LUdre[, names(weights)] * weights)
+##IPA100
+IPA100.p<-(LU100$AGRI. * p2)+(LU100$Pastagem. * p3)+
+  (LU100$INFURB. * p4)+(LU100$AGUA. * p5)+(LU100$RODO. * p6)
+max(IPA100.p)
+IPA100<-IPA100.p
+
+#IPArip
+IPArip.p<-(LUrip$AGRI. * p2)+(LUrip$Pastagem. * p3)+
+  (LUrip$INFURB. * p4)+(LUrip$AGUA. * p5)+(LUrip$RODO. * p6)
+max(IPArip.p)
+IPArip<-IPArip.p
+
+#IPAdre
+IPAdre.p<-(LUdre$AGRI. * p2)+(LUdre$Pastagem. * p3)+
+  (LUdre$INFURB. * p4)+(LUdre$AGUA. * p5)+(LUdre$RODO. * p6)
+max(IPAdre.p)
+IPAdre<-IPAdre.p
 IPAfull <- (IPA100 + IPArip + IPAdre)
 
 # Normalize IPA to range 0 - 1
@@ -116,9 +135,7 @@ DistEucl <- read.table("../results/distEuc2.txt", header = TRUE, row.names = 1)
 DistRio <- read.table("../results/distRio2.txt", header = TRUE)
 
 # Process data for Drainage 1 (DRE1) - Can be changed to another drainage
-IPAfull.dre1 <- IPAfull[IPAfull$Drenagem == "1", ]
-MET.IBI.dre1 <- MET.IBI[MET.IBI$Drenagem == "1", ]
-names(IPAfull.dre1) <- rownames(MET.IBI.dre1)
+IPAfull.dre1 <- IPAfull[names(IPAfull) %in% rownames(MET.IBI.dre1)]
 
 # Select significant metrics for validation
 MET.IBI.sel <- MET.IBI[, MET.SEL.FREQ]
@@ -193,7 +210,7 @@ MET.IBI.range <- cbind(MET.IBI[, c(1:2)], MET.IBI.range)
 # ==================================================
 # 4. Regression Analysis: Identifying Significant Metrics
 # ==================================================
-IPAfull.dre1 <- IPAfull[IPAfull$Drenagem == "1", 1]
+IPAfull.dre1 <- MET.IBI[MET.IBI$Drenagem == "1", ]
 MET.IBI.dre1 <- MET.IBI[MET.IBI$Drenagem == "1", ]
 names(IPAfull.dre1) <- rownames(MET.IBI.dre1)
 
@@ -201,27 +218,27 @@ METselLIST <- list()
 for (k in 1:3000) {
   MET.sel <- list()
   aleats <- sample(rownames(MET.IBI.dre1), 2 * nrow(MET.IBI.dre1) / 3)
-
+  
   for (i in 3:ncol(MET.IBI)) {
     nomeMET <- colnames(MET.IBI)[i]
     rod.MET.IBI.dre1 <- MET.IBI.dre1[aleats, nomeMET]
     rod.IPAfull.dre1 <- IPAfull.dre1[aleats]
-
+    
     MET.valid.dre1 <- MET.IBI.dre1[!rownames(MET.IBI.dre1) %in% aleats, nomeMET]
     IPA.valid.dre1 <- IPAfull.dre1[!names(IPAfull.dre1) %in% aleats]
-
+    
     if (all(rod.MET.IBI.dre1 == 0)) next
-
+    
     mod <- summary(lm(rod.MET.IBI.dre1 ~ rod.IPAfull.dre1))
     pvalue <- mod$coefficients[2, 4]
-
+    
     if (pvalue > 0.05) next
-
+    
     mod.valid <- summary(lm(MET.valid.dre1 ~ IPA.valid.dre1))
     pvalue.valid <- mod.valid$coefficients[2, 4]
-
+    
     if (pvalue.valid > 0.05) next
-
+    
     MET.sel[[nomeMET]] <- c(mod.valid$coefficients[1, 1], mod.valid$coefficients[2, 1], pvalue.valid)
   }
   METselLIST[[k]] <- as.data.frame(do.call(cbind, MET.sel))
