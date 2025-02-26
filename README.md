@@ -42,12 +42,14 @@ Normalization and standardization of datasets for better model performance.
 📜 How to Use | Como Usar
 
 Clone this repository | Clone este repositório:
-
-git clone https://github.com/sousavic/Factors-Transferability-Bioindicators.git
+```bash
+git clone https://github.com/sousavic/Environmental-Data-Modeling.git
+cd Environmental-Data-Modeling
 
 Open the script_analise.R in RStudio | Abra o script_analise.R no RStudio.
 
 Run the script to process data and generate results | Execute o script para processar os dados e gerar resultados.
+install.packages(c("vegan", "dplyr", "cluster"))
 
 📈 Results | Resultados
 
@@ -57,7 +59,15 @@ The processed data and generated indices (e.g., Anthropogenic Pressure Index - I
 
 🤝 Contributing | Contribuindo
 
-Feel free to fork this repository, submit issues, or suggest improvements!
+Feel free to fork this repository, submit issues, or suggest improvements.
+
+If you want to contribute:
+
+Fork this repository
+Create a branch (git checkout -b new-feature)
+Commit your changes (git commit -m "Added a new analysis step")
+Push to your fork (git push origin new-feature)
+Open a pull request
 
 
 
