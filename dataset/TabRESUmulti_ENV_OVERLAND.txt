@@ -1,0 +1,15 @@
+"P-value"	"Total"	"Environmental"	"Spatial"	"Shared"	"Residuals"
+"IBI"	0.148	0.014	0.021	0.004	-0.011	0.986
+"Riq_rel_Characiformes"	0	0.211	0	0.107	0.108	0.789
+"Riq_Characiformes"	0	0.17	0	0.096	0.076	0.83
+"Riq_rel_invertivoro"	0	0.163	0.07	0.166	0	0.837
+"Riq_rel_Callichthyidae"	0	0.131	0	0.081	0.051	0.869
+"Ab_rel_Callichthyidae"	0	0.128	0.001	0.083	0.045	0.872
+"Ab_Area.caud"	0	0.125	0.002	0.084	0.039	0.875
+"Riq_rel_Loricariidae"	0	0.102	0.012	0.086	0.005	0.898
+"Ab_rel_Characidae"	0.001	0.084	0	0.043	0.048	0.916
+"Riq_invertivoro"	0.002	0.076	0.013	0.07	0	0.924
+"Ab_rel_Characiformes"	0.006	0.064	0	0.028	0.043	0.936
+"Ab_Body_elong"	0.007	0.06	0	0.021	0.047	0.94
+"Ab_Area_pec"	0.009	0.057	0	0.005	0.055	0.943
+"Ab_BL"	0.015	0.049	0.017	0.054	0	0.951
