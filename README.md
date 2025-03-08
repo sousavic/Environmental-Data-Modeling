@@ -18,11 +18,17 @@ Sousa, V., Dala-Corte, R.B., Benedito, E., Brej˜ ao, G.L., Carvalho, F.R., Casa
 This project involved advanced statistical methods and predictive modeling techniques to assess the transferability of bioindicators across different environmental contexts. The following methodologies were applied:
 
 📌 Community Weighted Mean (CWM) to evaluate functional diversity and its relationship with environmental and anthropogenic variables.
+
 📌Generalized Linear Models (GLMs) and Generalized Additive Models (GAMs) to test relationships between bioindicators and anthropogenic pressure.
+
 📌Multivariate Analysis including redundancy analysis (RDA) and variation partitioning to disentangle environmental and spatial effects.
+
 📌Predictive Modeling & Machine Learning: Developed predictive models to assess bioindicator transferability across different environmental contexts.
+
 📌Outlier Detection and Removal using statistical thresholds (e.g., Cook’s distance, standard deviations, Shapiro-Wilk test).
+
 📌Spatial Autocorrelation Tests to account for dependence between sampling sites.
+
 📌Data Normalization and Standardization to improve model interpretability and performance.
 
 
