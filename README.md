@@ -4,6 +4,7 @@
 This repository contains the data and scripts used in the study "Factors Affecting the Transferability of Bioindicators Based on Stream Fish Assemblages". The analysis evaluates the impact of land use on stream integrity using bioindicators from fish assemblages. The study integrates environmental, spatial, and anthropogenic pressure data.
 
 
+
 📰 Published Study | Estudo Publicado
 
 This script was developed as part of the research published in:
@@ -11,28 +12,20 @@ This script was developed as part of the research published in:
 Sousa, V., Dala-Corte, R.B., Benedito, E., Brej˜ ao, G.L., Carvalho, F.R., Casatti, L., Cetra, M., Pompeu, P.S., Súarez, Y.R., Tejerina-Garro, F.L., Borges, P.P., Teresa, F.B., 2023. Factors affecting the transferability of bioindicators based on stream fish assemblages. Sci. Total Environ. 881 (2), 163417 https://doi.org/10.1016/j. scitotenv.2023.163417.
 
 
+
 📊 Statistical Analysis | Estatística Avançada
 
 This project involved advanced statistical methods and predictive modeling techniques to assess the transferability of bioindicators across different environmental contexts. The following methodologies were applied:
 
-📌 Functional and Community-Based Approaches
-Community Weighted Mean (CWM): Used to analyze the relationship between functional traits of stream fish assemblages and environmental variables, particularly land use impact.
-Functional Diversity Metrics (FRic, FDis, FEve): Assessed ecosystem functioning and species’ niche differentiation.
+📌 Community Weighted Mean (CWM) to evaluate functional diversity and its relationship with environmental and anthropogenic variables.
+📌Generalized Linear Models (GLMs) and Generalized Additive Models (GAMs) to test relationships between bioindicators and anthropogenic pressure.
+📌Multivariate Analysis including redundancy analysis (RDA) and variation partitioning to disentangle environmental and spatial effects.
+📌Predictive Modeling & Machine Learning: Developed predictive models to assess bioindicator transferability across different environmental contexts.
+📌Outlier Detection and Removal using statistical thresholds (e.g., Cook’s distance, standard deviations, Shapiro-Wilk test).
+📌Spatial Autocorrelation Tests to account for dependence between sampling sites.
+📌Data Normalization and Standardization to improve model interpretability and performance.
 
-📌 Multivariate and Predictive Modeling
-Generalized Linear Models (GLMs) and Generalized Additive Models (GAMs): Applied to model relationships between bioindicators and anthropogenic pressure, allowing for nonlinear responses.
-Variation Partitioning Analysis: Used to quantify the relative influence of environmental, spatial, and anthropogenic factors on fish assemblage structure.
-Redundancy Analysis (RDA): Applied for multivariate response modeling, identifying key environmental drivers affecting bioindicator performance.
 
-📌 Machine Learning & Predictive Analytics
-Random Forest (RF): Used to enhance predictive accuracy of bioindicator responses by handling complex interactions between environmental variables.
-Gradient Boosting (XGBoost): Applied to improve predictive performance and assess variable importance in bioindicator modeling.
-Model Validation (Cross-Validation & Performance Metrics): Utilized techniques such as k-fold cross-validation and evaluation metrics (R², RMSE, AUC-ROC) to ensure model reliability.
-
-📌 Data Processing & Statistical Assumptions
-Outlier Detection and Removal: Applied statistical methods (e.g., Cook’s distance, standard deviations, Shapiro-Wilk test) to improve model robustness.
-Spatial Autocorrelation Tests (Moran’s I, Variogram Analysis): Performed to detect spatial dependence and improve statistical inference.
-Data Normalization & Standardization: Preprocessed datasets for better comparability and model performance.
 
 📂 Repository Structure | Estrutura do Repositório
 
@@ -43,6 +36,7 @@ Data Normalization & Standardization: Preprocessed datasets for better comparabi
 │── results/  (Processed data | Dados processados)
 │── docs/  (Detailed data description | Descrição detalhada dos dados)
 │── visualizations/  (Generated plots | Gráficos gerados)
+
 
 
 📜 How to Use | Como Usar
@@ -56,6 +50,8 @@ Open the script_analise.R in RStudio | Abra o script_analise.R no RStudio.
 
 Run the script to process data and generate results | Execute o script para processar os dados e gerar resultados.
 install.packages(c("vegan", "dplyr", "cluster"))
+
+
 
 📈 Results | Resultados
 
