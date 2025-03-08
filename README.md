@@ -11,6 +11,10 @@ This script was developed as part of the research published in:
 Sousa, V., Dala-Corte, R.B., Benedito, E., Brej˜ ao, G.L., Carvalho, F.R., Casatti, L., Cetra, M., Pompeu, P.S., Súarez, Y.R., Tejerina-Garro, F.L., Borges, P.P., Teresa, F.B., 2023. Factors affecting the transferability of bioindicators based on stream fish assemblages. Sci. Total Environ. 881 (2), 163417 https://doi.org/10.1016/j. scitotenv.2023.163417.
 
 
+📊 Statistical Analysis | Estatística Avançada
+
+This project involved advanced statistical methods and predictive modeling techniques to assess the transferability of bioindicators across different environmental contexts. The following methodologies were applied:
+
 📌 Functional and Community-Based Approaches
 Community Weighted Mean (CWM): Used to analyze the relationship between functional traits of stream fish assemblages and environmental variables, particularly land use impact.
 Functional Diversity Metrics (FRic, FDis, FEve): Assessed ecosystem functioning and species’ niche differentiation.
